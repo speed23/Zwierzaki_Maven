@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pilecki1.Zwierzaki.Animals;
 
@@ -70,6 +72,36 @@ public class AnimalManager {
 		}
 		return count;
 	}
+	
+	void deleteAnimals() {
+		try {
+			deleteAllAnimalStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Animals> getAllPersons() {
+		List<Animals> animals = new ArrayList<Animals>();
+
+		try {
+			ResultSet rs = getAllAnimalStmt.executeQuery();
+
+			while (rs.next()) {
+				Animals a = new Animals(null, createTableAnimal, 0);
+				a.setId(rs.getInt("id"));
+				a.setName(rs.getString("name"));
+				a.setKind(rs.getString("kind"));
+				a.setAge(rs.getDouble("age1"));
+				animals.add(a);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return animals;
+	}
+	
 	
 	
 }

@@ -3,12 +3,16 @@ package com.pilecki1.Zwierzaki;
 public class Animals {
 
 		
+	private long id;
+	private double age1;
+	private KindOfAnimals kind;
+	private String name;
 
-public Animals(KindOfAnimals kind, String name, double age)
+public Animals(KindOfAnimals kind, String name, double age1)
 {
 	this.name=name;
 	this.kind=kind;
-	this.age=age;
+	this.age1=age1;
 }
 
 
@@ -32,13 +36,38 @@ public String getName()
 	
 public double age() 
 {
-	return age;
+	return age1;
+}
+
+public long getId() {
+	return id;
+}
+public void setId(long id) {
+	this.id = id;
+}
+
+
+public void setName(String name) {
+	this.name = name;
+}
+public double getAge() {
+	return age1;
+}
+public void setAge(double age1) {
+	this.age1 = age1;
 }
 	
 	
 public KindOfAnimals kind()
 {
 	return this.kind;
+}
+
+public long getKind() {
+	return kind;
+}
+public void setKind(String kind) {
+	this.kind = kind;
 }
 
 public void SetName(String name)
@@ -57,10 +86,10 @@ public KindOfAnimals getKindofAnimal()
 }
 	
 	
-private double age;
+
 	
-private KindOfAnimals kind;
+
 	
-private String name;
+
 
 }
