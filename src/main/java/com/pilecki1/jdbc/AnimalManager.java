@@ -81,7 +81,7 @@ public class AnimalManager {
 		}
 	}
 	
-	public List<Animals> getAllPersons() {
+	public List<Animals> getAllAnimals() {
 		List<Animals> animals = new ArrayList<Animals>();
 
 		try {
