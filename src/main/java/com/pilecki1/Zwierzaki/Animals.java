@@ -63,17 +63,23 @@ public KindOfAnimals kind()
 	return this.kind;
 }
 
-public long getKind() {
-	return kind;
+public String getKind() {
+	return kind.toString();
 }
-public void setKind(String kind) {
-	this.kind = kind;
+
+public String setKind() {
+	 return kind.toString();
 }
+
+
+
 
 public void SetName(String name)
 {
 	this.name=name;
 }
+
+
 	
 public String toString()
 {

@@ -25,13 +25,15 @@ z.AddAnimal(new Animals(KindOfAnimals.Mammals,"Giraffe", -2));
 z.AddAnimal(new Animals(KindOfAnimals.Insects,"Spider", 4));
 z.AddAnimal(new Animals(KindOfAnimals.Reptile,"Crocodile", 5 ));
 
-Animals zw=new Animals(KindOfAnimals.Fish,"GoldFish", 10);
+Animals zw=new  Animals(KindOfAnimals.Fish,"GoldFish", 10);
+Animals zw1=new Animals(KindOfAnimals.Cat, "Mammals", 2);
 
 
 z.printAnimals();
 
 AnimalManager db  = new AnimalManager();
 db.addAnimal(zw);
+db.addAnimal(zw1);
 
 
 

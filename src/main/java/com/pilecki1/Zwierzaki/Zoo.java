@@ -13,7 +13,7 @@ public class Zoo {
 	
 	
 	
-private long id;
+private long id ;
 	
 private List<Animals> animal = new ArrayList<Animals>();
 private Logger logger=Logger.getLogger(Zoo.class);
@@ -45,7 +45,7 @@ public void AddAnimal(Animals z)
 {
 		
 	Animals.add(z);
-	PropertyConfigurator.configure("Log4J.properties");
+	//PropertyConfigurator.configure("Log4J.properties");
 	String zw;
 	logger.info("Animal " + z + "had been added! " + this);
 

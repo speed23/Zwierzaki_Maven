@@ -2,5 +2,5 @@ package com.pilecki1.Zwierzaki;
 
 public enum KindOfAnimals {
 
-	Mammals, Fish, Reptile, Bird, Insects
+	Mammals, Fish, Reptile, Bird, Insects, Cat
 }
