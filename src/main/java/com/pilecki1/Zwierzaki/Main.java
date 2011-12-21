@@ -27,10 +27,13 @@ z.AddAnimal(new Animals(KindOfAnimals.Reptile,"Crocodile", 5 ));
 
 Animals zw=new Animals(KindOfAnimals.Fish,"GoldFish", 10);
 
+
 z.printAnimals();
 
 AnimalManager db  = new AnimalManager();
 db.addAnimal(zw);
+
+
 
 
 

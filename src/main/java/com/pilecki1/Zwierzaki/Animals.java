@@ -85,6 +85,7 @@ public KindOfAnimals getKindofAnimal()
 	return this.kind;
 }
 	
+
 	
 
 	

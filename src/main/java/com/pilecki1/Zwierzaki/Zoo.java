@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 public class Zoo {
 	
 	
+	
+private long id;
+	
 private List<Animals> animal = new ArrayList<Animals>();
 private Logger logger=Logger.getLogger(Zoo.class);
 private String name;
@@ -95,5 +98,14 @@ public void SwitchAnimals(Animals z, String newAnimals, String newKind)
 	this.name= newAnimals;	
 }
 	
+
+public void setId(long id){
+	this.id = id;
+}
+
+public long getId(){
+	return id;
+}
+
 	
 }
