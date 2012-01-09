@@ -58,7 +58,7 @@ public class DBManager {
 					"");
 
 			deleteAllAnimalsFromZooStmt = conn.prepareStatement("" +
-					"DELETE deleteAllAnimalsFromZooStmtFROM Zoo_Animal WHERE Zoo_id = ?" +
+					"DELETE FROM Zoo_Animal WHERE Zoo_id = ?" +
 					"");
 
 			
@@ -69,11 +69,12 @@ public class DBManager {
 			}
 		}
 
-	public Connection getConnection() {
+	    public Connection getConnection() {
 		return conn;
-	}	
+	   }	
 
-	public void addAnimalToZoo(List<Integer> listZooId, List<Integer> listAnimalId) {
+	   
+	    public void addAnimalToZoo(List<Integer> listZooId, List<Integer> listAnimalId) {
 		try {
 			for (Integer ZooId : listZooId) {
 				for (Integer AnimalId : listAnimalId) {
@@ -98,9 +99,9 @@ public class DBManager {
 			e.printStackTrace();
 		}
 
-	}			
+	}
 
-
+	
 
 	
 

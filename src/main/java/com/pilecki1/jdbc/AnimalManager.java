@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.pilecki1.Zwierzaki.Animals;
+import com.pilecki1.Zwierzaki.KiOfAnim;
 import com.pilecki1.Zwierzaki.Zoo;
 
 public class AnimalManager {
@@ -24,6 +25,7 @@ public class AnimalManager {
 	private PreparedStatement deleteAllAnimalsStmt;
 	private PreparedStatement searchAnimalByNameStmt;
 	private PreparedStatement getAnimalStmt;
+	private PreparedStatement searchAnimalByKindStmt;
 	
 
 	public AnimalManager() {
@@ -128,9 +130,27 @@ public class AnimalManager {
 		}
 		return null;
 	}
+	
+	
+	public List<Integer> searchAnimalByKind (KiOfAnim kind)
+	{
+		try 
+		{
+			List<Integer> result = new ArrayList<Integer>();
+			searchAnimalByKindStmt.setString(1, kind.toString());
 
-		
+			ResultSet rs = searchAnimalByKindStmt.executeQuery();
+			while (rs.next())
+				result.add(rs.getInt("Id"));
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}	
 
+	
+	
 	public void deleteAnimal(List<Integer> list)
 	{
 		try {
@@ -142,14 +162,6 @@ public class AnimalManager {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-
-
-
-
 }
 	
 	

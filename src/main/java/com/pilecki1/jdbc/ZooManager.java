@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
+import com.pilecki1.Zwierzaki.KiOfAnim;
 import com.pilecki1.Zwierzaki.Zoo;
 
 
@@ -16,6 +17,7 @@ public class ZooManager {
 	private PreparedStatement deleteAllZooStmt;
 	private PreparedStatement deleteZooStmt;
 	private PreparedStatement findZooByAdressStmt;
+	private PreparedStatement searchZooByNameStmt;
 
 
 	public ZooManager() {
@@ -69,11 +71,13 @@ public class ZooManager {
 			findZooByAdressStmt = conn.prepareStatement("" +
 					"SELECT id FROM Zoo WHERE adress = ?" +
 					"");
+			searchZooByNameStmt = conn.prepareStatement("" +
+					"SELECT id FROM Zoo WHERE name = ?" +
+					"");
+			
+			
 
-		
-
-
-		} catch (SQLException e) {
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -103,6 +107,24 @@ public class ZooManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<Integer> searchZooByName (Zoo name)
+	{
+		try 
+		{
+			List<Integer> result = new ArrayList<Integer>();
+			searchZooByNameStmt.setString(1, name.toString());
+
+			ResultSet rs = searchZooByNameStmt.executeQuery();
+			while (rs.next())
+				result.add(rs.getInt("Id"));
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}	
+	
 
 	public List<Integer> findAnimalByAdress(String adress) {
 		try 
@@ -116,11 +138,35 @@ public class ZooManager {
 
 			return result;
 
-		} catch (SQLException e) {
+		} catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
 		return null;			
 	}
+	
+	
+	public List<Zoo> getAllZoo() {
+
+		List<Zoo> zoo = new ArrayList<Zoo>();
+
+		try {
+			ResultSet rs = getCustomerStmt.executeQuery();
+
+			while(rs.next()) {
+				zoo.add(new Zoo(rs.getString("name"), rs.getString("adress")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return zoo;
+	}
+	
+	
+	
+	
 
 	public void deleteZoo(List<Integer> list) {
 		try {
@@ -128,7 +174,9 @@ public class ZooManager {
 				deleteZooStmt.setInt(1, id);
 				deleteZooStmt.executeUpdate();
 			}
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
 	}	

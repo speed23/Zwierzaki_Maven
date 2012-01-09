@@ -48,10 +48,12 @@ public class Animals {
 	
 	
 	public int setAge(int age) throws AgeLessThanZeroException {
-		if(age < 0) {
-			throw new AgeLessThanZeroException("Age Can not less than zero");
-		}else{
-			
+		if(age < 0)
+		{
+		   throw new AgeLessThanZeroException("Age Can not less than zero");
+		}
+		else
+		{
 			return this.age = age;
 		}
 	}

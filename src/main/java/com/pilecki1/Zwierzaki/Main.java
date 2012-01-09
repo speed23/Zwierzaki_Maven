@@ -32,7 +32,8 @@ public class Main {
 		
 		
 		
-		}catch(AgeLessThanZeroException e){
+		}
+		catch(AgeLessThanZeroException e){
 			
 		}
 		
@@ -46,17 +47,30 @@ public class Main {
 		AnimalManager AnimalBase = new AnimalManager();
 		AnimalBase.addAnimal(new Animals("Zebra", 10, KiOfAnim.Mammals));
 		AnimalBase.addAnimal(new Animals("Eagle", 2,  KiOfAnim.Bird));
+		AnimalBase.addAnimal(new Animals("Tiger", 2,  KiOfAnim.Mammals));
+		AnimalBase.addAnimal(new Animals("Lizard", 2,  KiOfAnim.Reptile));
+		AnimalBase.addAnimal(new Animals("Mouse", 2,  KiOfAnim.Mammals));
+		AnimalBase.addAnimal(new Animals("Scoropin", 2,  KiOfAnim.Insects));
+		
+		AnimalBase.searchAnimalByName("Scorpion");
 		
 		
 		ZooManager ZooBase = new ZooManager();
 		ZooBase.addZoo(new Zoo("ZooLand", "Gdynia"));
 		ZooBase.addZoo(new Zoo("FunnyAn", "Wejherowo"));
 		
-	
-
+		
+		
+		DBManager  dbcos = new DBManager();
+		
+		dbcos.addAnimalToZoo(ZooBase.findAnimalByAdress("Gdynia"), AnimalBase.searchAnimalByName("Zebra"));
+		for (Integer id : ZooBase.findAnimalByAdress("Gdynia"))
+		{
+			System.out.println(id);
 		}
-
-	
+		
+			
+		}
 }
 	
 	
