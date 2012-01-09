@@ -6,20 +6,19 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import com.pilecki1.Zwierzaki.Zoo;
-import com.pilecki1.Zwierzaki.Animals;
-import com.pilecki1.Zwierzaki.KindOfAnimals;
 
 public class ZooTest {
 
-	
-	private static final KindOfAnimals KindOfAnimals = null;
-	private Zoo z;
-	
+	private static Zoo testZoo;
+	private static Animals animal;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		testZoo = new Zoo("AnimalsWorld", "Gdansk");
+		animal = new Animals("Wykonano", 2, KiOfAnim.Mammals);
 	}
 
 	@AfterClass
@@ -28,74 +27,65 @@ public class ZooTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		
-		z = new Zoo("Zoo in Gdansk");
-		z.AddAnimal(new Animals(KindOfAnimals.Reptile,"Lizard", 10));
-		z.AddAnimal(new Animals(KindOfAnimals.Mammals,"Monkey", 4));
+		testZoo.addAnimal(animal); 
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		testZoo.removeAllAnimals();
+	}
+
+
+
+	@Test
+	public void printCustomerCorrect() {
+		String expectedResult = "Name: John Adress: Doe";
+		assertEquals(expectedResult, testZoo.printZoo());	
 	}
 
 	@Test
-	public void testZoo() {
-		fail("Not yet implemented");
-	}
+	public void getName() {
+		assertTrue(testZoo.getName().equals("AnimalsWorld"));
+	}	
 
 	@Test
-	public void testPrintAnimals() {
-		z.printAnimals();
-		assertTrue(ZooTest.printAnimals().equals("Lew"));
-	}
+	public void setName() {
+		testZoo.setName("AnimalsWorld");
+		assertTrue(testZoo.getName().equals("AnimalsWorld"));
+	}	
 
 	@Test
-	public void testAddAnimal() {
-		z.printAnimals();
-		z.AddAnimal(new Animals(KindOfAnimals.Mammals,"Lew", 10));
-		assertTrue(ZooTest.AddAnimals().size() == 1);
-		assertNotNull(ZooTest.ReturnAnimals());
-	}
+	public void getAdress() {
+		assertTrue(testZoo.getAdress().equals("Gdansk"));
+	}	
 
 	@Test
-	public void testRemoveAnimal() {
-		 Animals lion = z.FindByName(KindOfAnimals );
-			z.removeAnimals(lion);
-			assertTrue(ZooTest.animals().size() == 0);
-	}
+	public void setAdress() {
+		testZoo.setAdress("Gdansk");
+		assertTrue(testZoo.getAdress().equals("Gdansk"));
+	}	
 
-	@Test
-	public void testAnimalsExist() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveAllAnimals() {
-		z.RemoveAllAnimals();
-	}
-
-	@Test
-	public void testAddMoreAnimals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testReturnAnimals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByKind() {
-		assertSame(ZooTest.findByKind(kind), ZooTest.Animals().get(0));
-	}
-
-	@Test
-	public void testSwitchAnimals() {
-		fail("Not yet implemented");
-	}
-	
-	
 	
 
+	@Test
+	public void removeAnimals() throws AgeLessThanZeroException {
+		testZoo.removeAnimals(testZoo.findAnimalByName("Test"));
+		assertTrue(testZoo.returnAnimalsList().size() == 0); 
+	}
+
+	@Test
+	public void removeAllAnimals() throws AgeLessThanZeroException {
+		testZoo.removeAllAnimals();
+		
+	}
+
+	@Test
+	public void findAnimalByName() {
+		assertSame(testZoo.findAnimalByName("testujemy"), testZoo.returnAnimalsList().get(0));
+	}
+
+	@Test(expected=AgeLessThanZeroException.class, timeout=10)
+	public void AgeLessThanZeroException() throws AgeLessThanZeroException {
+		animal.setAge(-1);
+	}
 }

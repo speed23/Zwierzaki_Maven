@@ -10,102 +10,100 @@ import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 
 public class Zoo {
-	
-	
-	
-private long id ;
-	
-private List<Animals> animal = new ArrayList<Animals>();
-private Logger logger=Logger.getLogger(Zoo.class);
-private String name;
 
-private Collection<?> z;
-private ArrayList<Animals> Animals;
-
-public Zoo(String name) 
-{
-		
-	super();
-	this.Animals=new ArrayList<Animals>();
-	this.name=name;
-		
-}
+	public List<Animals> animals = new ArrayList<Animals>();
 	
 	
-public void printAnimals()
-{
-	for (Animals z : animal)
-	{
-		z.PrintAnimal();
+	public Zoo(String name, String adress) {
+		this.name = name;
+		this.adress = adress;
+		this.animals = new ArrayList<Animals>();
 	}
-}
 	
 	
-public void AddAnimal(Animals z)
-{
+	public Zoo(String name, String adress, List<Animals> animals) {
+		this.name = name;
+		this.adress = adress;
+		this.animals = animals;
+	}
+	
+	
+	public void printAnimals() {
+		for(Animals a : this.animals) {
+			a.printAnimals();
+		}
+   }
+
+	
+	
+	public String printZoo() {
+		String PrintZoo = "Name: " + name + " Adress: " + adress;
+		System.out.println(PrintZoo);
+		return PrintZoo;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getAdress() {
+		return adress;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+	
+	
+	public List<Animals> returnAnimalsList() {
+		return animals;
+	}
+	
+	
+	public void removeAnimals(Animals animal) {	
+		animals.remove(animal);
+		System.out.println("Animals: " + animal.getName() + " removed");
+	}
+	
+
+	public List<Animals> findAllAnimalsByKind(KiOfAnim kind) {
+		List<Animals> results = new ArrayList<Animals>();
+		for (Animals a : animals) {
+			if (a.getKinOfAnim().equals(kind)) {
+				results.add(a);
+			}
+		}
+		return results;
+	}
+	
+	
+	public Animals findAnimalByName(String name) {
+		for (Animals a : animals) {
+			if (a.getName().equals(name)) {
+				return a;
+			}
+		}
+		return null;
+	}	
+
+	
+	
+	public void removeAllAnimals() {
+		animals.clear();
+		System.out.println("All animals have been removed");
 		
-	Animals.add(z);
-	//PropertyConfigurator.configure("Log4J.properties");
-	String zw;
-	logger.info("Animal " + z + "had been added! " + this);
-
-}
+	}
 	
-public void RemoveAnimal(Animals z)
-{
-	Animals.remove(z);
-}
+	public void addAnimal(Animals animal) throws AgeLessThanZeroException {
+		if (animal.getAge()>0)
+			animals.add(animal);
+	}	
 	
 	
-	
-public int AnimalsExist(Animals z)
-{
-	return Animals.indexOf(z);
-}
-
-public void RemoveAllAnimals()
-{
-	Animals.removeAll(z);	
-	
-}
-
-public  void AddMoreAnimals()
-{
-	Animals.addAll(Animals);
-}
-	
-public List<Animals> ReturnAnimals() 
-{
-	return Animals;
-}
-	
-
-public Animals FindByKind(KindOfAnimals kind){
-
-for (Animals z : animal)
-{	
-	if (z.kind().equals(kind))
-{		
-	return z;
-}
-}
-	return null;
-}
-	
-  
-public void SwitchAnimals(Animals z, String newAnimals, String newKind)
-{
-	this.name= newAnimals;	
-}
-	
-
-public void setId(long id){
-	this.id = id;
-}
-
-public long getId(){
-	return id;
-}
-
-	
+	public String name;
+	public String adress;
 }

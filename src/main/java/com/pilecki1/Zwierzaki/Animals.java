@@ -1,102 +1,60 @@
 package com.pilecki1.Zwierzaki;
 
 public class Animals {
-
-		
-	private long id;
-	private double age1;
-	private KindOfAnimals kind;
-	private String name;
-
-public Animals(KindOfAnimals kind, String name, double age1)
-{
-	this.name=name;
-	this.kind=kind;
-	this.age1=age1;
-}
-
-
-public void PrintAnimal()
-{
-	System.out.println("Name of: "+name+"\tKind of: "+ kind);
-}
-	
-
-public void SetAge(double age) throws AgeException
-{
-	if(age < 0)
-	throw new AgeException("Age don't have less than 0 because then Animals didn't born");
-	
-}
-	
-public String getName()
-{
-	return name;
-}
-	
-public double age() 
-{
-	return age1;
-}
-
-public long getId() {
-	return id;
-}
-public void setId(long id) {
-	this.id = id;
-}
-
-
-public void setName(String name) {
-	this.name = name;
-}
-public double getAge() {
-	return age1;
-}
-public void setAge(double age1) {
-	this.age1 = age1;
-}
 	
 	
-public KindOfAnimals kind()
-{
-	return this.kind;
-}
+	public int id;
+	public String name;
+	public int age;
+	public KiOfAnim kind;
+	
+	
+	
+	public Animals(String name, int age, KiOfAnim kind) {
+		this.name = name;
+		this.age = age;
+		this.kind = kind;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
 
-public String getKind() {
-	return kind.toString();
-}
+	public int getAge() {
+		return age;
+	}
 
-public String setKind() {
-	 return kind.toString();
-}
-
-
-
-
-public void SetName(String name)
-{
-	this.name=name;
-}
-
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public KiOfAnim getKinOfAnim() {
+		return kind;
+	}
+	
+	
+	public String printAnimals() {
+		String PrintAnimals = "\t" + name + " Age: " + age  + " Kind: " + kind;
+		System.out.println(PrintAnimals);
+		return PrintAnimals;
+	}
 
 	
-public String toString()
-{
-	return this.name + " "+this.kind;
-}
+	public void setKiOfAnim(KiOfAnim kind) {
+		this.kind = kind;
+	}
 	
-public KindOfAnimals getKindofAnimal()
-{
-	return this.kind;
-}
 	
-
-	
-
-	
-
-	
-
+	public int setAge(int age) throws AgeLessThanZeroException {
+		if(age < 0) {
+			throw new AgeLessThanZeroException("Age Can not less than zero");
+		}else{
+			
+			return this.age = age;
+		}
+	}
 
 }
+

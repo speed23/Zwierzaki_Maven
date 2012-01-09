@@ -1,53 +1,62 @@
 package com.pilecki1.Zwierzaki;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.log4j.PropertyConfigurator;
 
 import com.pilecki1.jdbc.AnimalManager;
+import com.pilecki1.jdbc.DBManager;
+import com.pilecki1.jdbc.ZooManager;
 
 
 
 public class Main {
 
+	public static void main(String[] args){
+		
+		
+		
+		List<Animals> animals = new ArrayList<Animals>();
+		
+		Zoo zoo = new Zoo("AnimalsWorld", "Gdansk", animals);
+		
+		try{
+		
+		zoo.addAnimal(new Animals("Mouse", 3, KiOfAnim.Mammals));
+		zoo.addAnimal(new Animals("Tiger", 10, KiOfAnim.Mammals));
+		zoo.addAnimal(new Animals("Lizard", 2, KiOfAnim.Reptile));
+		zoo.addAnimal(new Animals("GoldFish", 5, KiOfAnim.Fish));
+		zoo.addAnimal(new Animals("Monkey", 4, KiOfAnim.Mammals));
+		
+		
+		
+		}catch(AgeLessThanZeroException e){
+			
+		}
+		
+		zoo.printZoo();
+		zoo.printAnimals();
+		System.out.println("There are: " + animals.size() + " games on the list");
+		zoo.findAnimalByName("Tiger").printAnimals();
+		
+		
+		
+		AnimalManager AnimalBase = new AnimalManager();
+		AnimalBase.addAnimal(new Animals("Zebra", 10, KiOfAnim.Mammals));
+		AnimalBase.addAnimal(new Animals("Eagle", 2,  KiOfAnim.Bird));
+		
+		
+		ZooManager ZooBase = new ZooManager();
+		ZooBase.addZoo(new Zoo("ZooLand", "Gdynia"));
+		ZooBase.addZoo(new Zoo("FunnyAn", "Wejherowo"));
+		
 	
-//private static Logger logger= Logger.getLogger(Main.class);
-	
-public static void main(String[] args) {
+
+		}
 
 	
-PropertyConfigurator.configure("log4j.properties");
-	
-Zoo z= new Zoo("Zoo in Gdansk");
-
-z.AddAnimal(new Animals(KindOfAnimals.Mammals,"Zebra", 10));
-z.AddAnimal(new Animals(KindOfAnimals.Mammals,"Giraffe", -2));
-z.AddAnimal(new Animals(KindOfAnimals.Insects,"Spider", 4));
-z.AddAnimal(new Animals(KindOfAnimals.Reptile,"Crocodile", 5 ));
-
-Animals zw=new  Animals(KindOfAnimals.Fish,"GoldFish", 10);
-Animals zw1=new Animals(KindOfAnimals.Cat, "Mammals", 2);
-
-
-z.printAnimals();
-
-AnimalManager db  = new AnimalManager();
-db.addAnimal(zw);
-db.addAnimal(zw1);
-
-
-
-
-
-try {
-zw.SetAge(-1.0);
-} catch (AgeException e) {
-
-
 }
-
-System.out.println(z);
-}
-
-}
-
+	
+	
