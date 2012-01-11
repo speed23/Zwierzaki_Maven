@@ -14,7 +14,7 @@ public class DBManager {
 	private Statement stmt;
 	private PreparedStatement addAnimalToZooStmt;
 	private PreparedStatement deleteAllAnimalsFromZooStmt;
-	
+	private PreparedStatement getZooAnimStmt;
 
 	public DBManager() {
 
@@ -76,9 +76,9 @@ public class DBManager {
 	   
 	    public void addAnimalToZoo(List<Integer> listZooId, List<Integer> listAnimalId) {
 		try {
-			for (Integer ZooId : listZooId) {
+			for (Integer ZooID : listZooId) {
 				for (Integer AnimalId : listAnimalId) {
-					addAnimalToZooStmt.setInt(1, ZooId);
+					addAnimalToZooStmt.setInt(1, ZooID);
 					addAnimalToZooStmt.setInt(2, AnimalId);
 					addAnimalToZooStmt.executeUpdate();
 				}
@@ -88,6 +88,37 @@ public class DBManager {
 		}
 
 	}
+	    
+	    
+	    public List<Animals> getZooAnimal (List<Integer> listZooId) {
+			List<Animals> animals = new ArrayList<Animals>();
+
+			try {
+				for (Integer ZooId : listZooId)
+				{
+					getZooAnimStmt.setInt(1, ZooId);
+					ResultSet rs = getZooAnimStmt.executeQuery();
+					while (rs.next()) 
+					{
+						KiOfAnim kind = null;
+						if(rs.getString("kind").equalsIgnoreCase("Mammals"))
+							animals.add(new Animals(rs.getString("name"), rs.getInt("age"),KiOfAnim.Mammals));
+						else if(rs.getString("kind").equalsIgnoreCase("Reptile"))
+							animals.add(new Animals(rs.getString("name"), rs.getInt("age"),KiOfAnim.Reptile));
+						else if(rs.getString("kind").equalsIgnoreCase("Bird"))
+							animals.add(new Animals(rs.getString("name"), rs.getInt("age"),KiOfAnim.Bird));
+
+					}
+				}	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return animals;
+
+
+		}    
+	    
+	    
 
 	public void deleteAllAnimalsFromZoo (List<Integer> listZooId) {
 		try {

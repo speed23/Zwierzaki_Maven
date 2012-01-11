@@ -68,6 +68,9 @@ public class AnimalManager {
 			addAnimalStmt = conn.prepareStatement("" +
 					"INSERT INTO animal (name, age, kind) VALUES ( ?, ?, ?)" +
 					"");
+			getAnimalStmt = conn.prepareStatement("" +
+					"SELECT * FROM animal" +
+					"");
 
 
 			deleteAllAnimalsStmt = conn.prepareStatement("" +
@@ -149,6 +152,12 @@ public class AnimalManager {
 		return null;
 	}	
 
+	
+	
+	
+	
+	
+	
 	
 	
 	public void deleteAnimal(List<Integer> list)

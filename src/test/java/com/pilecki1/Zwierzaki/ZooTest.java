@@ -10,6 +10,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 
+import com.pilecki1.Zwierzaki.Zoo;
+
 public class ZooTest {
 
 	private static Zoo testZoo;
@@ -69,7 +71,9 @@ public class ZooTest {
 
 	@Test
 	public void removeAnimals() throws AgeLessThanZeroException {
-		testZoo.removeAnimals(testZoo.findAnimalByName("Test"));
+		
+		testZoo.addAnimal(new Animals("Dog", 3, KiOfAnim.Mammals));
+		testZoo.removeAnimals(testZoo.findAnimalByName("Dog"));
 		assertTrue(testZoo.returnAnimalsList().size() == 0); 
 	}
 

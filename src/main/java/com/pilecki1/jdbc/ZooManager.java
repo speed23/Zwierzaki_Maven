@@ -13,7 +13,7 @@ public class ZooManager {
 	private Connection conn;
 	private Statement stmt;
 	private PreparedStatement addZooStmt;
-	private PreparedStatement getCustomerStmt;
+	private PreparedStatement getZooStmt;
 	private PreparedStatement deleteAllZooStmt;
 	private PreparedStatement deleteZooStmt;
 	private PreparedStatement findZooByAdressStmt;
@@ -75,6 +75,10 @@ public class ZooManager {
 					"SELECT id FROM Zoo WHERE name = ?" +
 					"");
 			
+			getZooStmt = conn.prepareStatement("" +
+					"SELECT * FROM Zoo" +
+					"");
+			
 			
 
 			} catch (SQLException e) {
@@ -108,12 +112,12 @@ public class ZooManager {
 		}
 	}
 	
-	public List<Integer> searchZooByName (Zoo name)
+	public List<Integer> searchZooByName (String string)
 	{
 		try 
 		{
 			List<Integer> result = new ArrayList<Integer>();
-			searchZooByNameStmt.setString(1, name.toString());
+			searchZooByNameStmt.setString(1, string.toString());
 
 			ResultSet rs = searchZooByNameStmt.executeQuery();
 			while (rs.next())
@@ -151,7 +155,7 @@ public class ZooManager {
 		List<Zoo> zoo = new ArrayList<Zoo>();
 
 		try {
-			ResultSet rs = getCustomerStmt.executeQuery();
+			ResultSet rs = getZooStmt.executeQuery();
 
 			while(rs.next()) {
 				zoo.add(new Zoo(rs.getString("name"), rs.getString("adress")));
