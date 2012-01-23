@@ -51,10 +51,7 @@ public class DBManagerTest {
 		
 	}
 
-	@Test
-	public void testDBManager() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	public void testGetConnection() {

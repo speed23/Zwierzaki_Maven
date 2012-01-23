@@ -56,9 +56,9 @@ public class AnimalManagerTest {
 	@Test
 	public void testSearchAnimalByName() {
 		
-		animalManagerTest.addAnimal(new Animals("Lion", 2, KiOfAnim.Mammals));
-		animalManagerTest.addAnimal(new Animals("Lizard", 2, KiOfAnim.Reptile));
-		assertTrue(animalManagerTest.searchAnimalByName("Lion").size() == 1);
+		animalManagerTest.addAnimal(new Animals("Zebra", 10, KiOfAnim.Mammals));
+		animalManagerTest.addAnimal(new Animals("Zebra2", 10, KiOfAnim.Mammals));
+		assertTrue(animalManagerTest.searchAnimalByName("Zebra2").size() == 1);
 		
 	}
 

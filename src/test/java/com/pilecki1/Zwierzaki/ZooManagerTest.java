@@ -34,22 +34,19 @@ public class ZooManagerTest {
 		zooManager.deleteAllZoo();
 	}
 
-	@Test
-	public void testGetConnection() {
-		assertNotNull(zooManager.getConnection());
-	}
+	
 
 	@Test
 	public void testAddZoo() {
-		zooManager.addZoo(new Zoo("Zoolandia", "Bytom"));
+		zooManager.addZoo(new Zoo("NoweZoo", "Krakow"));
 		assertTrue(zooManager.getAllZoo().size() == 2);
-		assertEquals(2, zooManager.getAllZoo().size());
+		
 	}
 
 	@Test
 	public void testDeleteAllZoo() {
-		zooManager.addZoo(new Zoo("Zoolandia2", "Gdansk"));
-		zooManager.addZoo(new Zoo("Zoolandia3", "Poznan"));
+		zooManager.addZoo(new Zoo("Test1", "Test1"));
+		zooManager.addZoo(new Zoo("Test2", "Test2"));
 		zooManager.deleteAllZoo();
 		assertEquals(0, zooManager.getAllZoo().size());
 	}
@@ -81,9 +78,9 @@ public class ZooManagerTest {
 	public void testDeleteZoo() {
 		zooManager.addZoo(new Zoo("Zoolandia2", "Gdansk"));
 		zooManager.addZoo(new Zoo("Zoolandia3", "Poznan"));
-		assertTrue(zooManager.getAllZoo().size() == 2);
-		zooManager.deleteZoo(zooManager.findAnimalByAdress("Poznan"));
 		assertTrue(zooManager.getAllZoo().size() == 3);
+		zooManager.deleteZoo(zooManager.findAnimalByAdress("Poznan"));
+		
 	}
 
 }

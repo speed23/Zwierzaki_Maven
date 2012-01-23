@@ -19,6 +19,8 @@ public class AnimalsTest {
 	public static void setUpBeforeClass() throws Exception {
 		testZoo = new Zoo("AnimalsWorld", "Gdansk");
 		animals = new Animals("Crocodile", 4, KiOfAnim.Reptile);
+		
+	
 	}
 
 	@AfterClass
@@ -37,18 +39,18 @@ public class AnimalsTest {
 
 	@Test
 	public void getName() {
-		assertTrue(testZoo.returnAnimalsList().get(0).getName().equals("Bla Bla BLa"));
+		assertTrue(testZoo.returnAnimalsList().get(0).getName().equals("Crocodile"));
 	}
 
 	@Test
 	public void setName() {
-		testZoo.returnAnimalsList().get(0).setName("bla bla bla");
-		assertTrue(testZoo.returnAnimalsList().get(0).getName().equals("bla blas bla"));
+		testZoo.returnAnimalsList().get(0).setName("Crocodile");
+		assertTrue(testZoo.returnAnimalsList().get(0).getName().equals("Crocodile"));
 	}
 
 	@Test
 	public void getKinOfAnim() {
-		assertTrue(testZoo.returnAnimalsList().get(0).getKinOfAnim().equals(KiOfAnim.Bird));
+	assertTrue(testZoo.returnAnimalsList().get(0).getKinOfAnim().equals(KiOfAnim.Reptile));
 	}
 
 	@Test
@@ -59,7 +61,7 @@ public class AnimalsTest {
 
 	@Test
 	public void getAge() {
-		assertTrue(testZoo.returnAnimalsList().get(0).getAge() == 2);
+		assertTrue(testZoo.returnAnimalsList().get(0).getAge() == 4);
 	}
 
 	@Test
